@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Impact Calculator | Plant-Based Prides</title>
+<meta name="description" content="Estimate your Pride's current environmental impact and the possible reduction from moving catering to 100%, 60% or 30% plant-based." />
+<link rel="icon" type="image/png" href="assets/images/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<div class="page-shell">
+<header class="site-header">
+  <div class="pride-stripe"></div>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand">
+      <img src="assets/images/logo-text.png" alt="Plant-Based Prides" />
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why.html">Why?</a></li>
+        <li class="has-dropdown">
+          <a class="dropdown-toggle" href="take-action.html" aria-expanded="false">Take Action <span class="chev">&#9662;</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://act.plantbasedbritain.org/plant_based_prides_petition" target="_blank" rel="noopener">Sign The Petition<span class="dd-desc">Add your name to the campaign petition</span></a></li>
+            <li><a href="email-your-local-pride.html">Email Your Local Pride<span class="dd-desc">Template emails, three ways to make the case</span></a></li>
+            <li><a href="https://act.plantbasedbritain.org/plant_based_pride_sign_up" target="_blank" rel="noopener">Campaign With Us<span class="dd-desc">Join the wider Plant-Based Prides campaign</span></a></li>
+          </ul>
+        </li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="further-reading.html">Further Reading</a></li>
+        <li><a href="impact-calculator.html">Impact Calculator</a></li>
+        <li><a class="btn btn-primary btn-sm" href="https://act.plantbasedbritain.org/plant_based_prides_petition" target="_blank" rel="noopener">Sign the Petition</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="pride-stripe"></div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container container-narrow">
+      <span class="eyebrow">Impact Calculator</span>
+      <h1>Calculate your Pride's current environmental impact and possible reduction</h1>
+      <p>This calculator works from publicly available Pride event data and published studies on food, catering and their environmental impacts. It's a rough estimate, not an exact figure &mdash; see the methodology note below for details, and get in touch if you have suggestions for improving its accuracy.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="grid" style="grid-template-columns: 1.1fr 1fr; align-items:flex-start;">
+
+        <div class="calc-card">
+          <form id="fullCalcForm">
+            <div class="field">
+              <label for="attendees">Total number of attendees</label>
+              <input type="number" id="attendees" min="0" placeholder="e.g. 20000" required />
+            </div>
+
+            <div class="field">
+              <label for="mealPercent">Percentage (%) of attendees who purchase one meal</label>
+              <input type="range" id="mealPercent" min="0" max="100" value="30" />
+              <div class="range-value"><span id="mealPercentValue">30</span>%</div>
+              <p class="field-hint">Guide: typical outdoor events that last several hours might see vendor use in the 20&ndash;45% range. This is generally higher where events have concerts or ticketed areas (potentially above 70%).</p>
+            </div>
+
+            <div class="field">
+              <label>How much of that catering is plant-based?</label>
+              <div class="tabs" id="planetTabs" role="tablist" style="margin-bottom:6px;">
+                <button class="tab-btn active" data-percent="100" type="button">100% Plant-Based</button>
+                <button class="tab-btn" data-percent="60" type="button">60% Plant-Based</button>
+                <button class="tab-btn" data-percent="30" type="button">30% Plant-Based</button>
+              </div>
+              <p class="field-hint">Select the commitment level you'd like to estimate &mdash; this replaces our old accreditation system. 100% is selected by default.</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Calculate</button>
+          </form>
+        </div>
+
+        <div class="results-panel empty" id="results">
+          Enter your attendee numbers and choose a plant-based level to see your Pride's current environmental impact and possible reduction.
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="container container-narrow">
+      <h2>Methodology</h2>
+      <p>The baseline figures used for a standard (non plant-based) event meal are 200 ft&sup2; of land, 450 litres of water and 4.9 kg of CO2e per meal, based on published Pride catering data and general food-system studies.</p>
+      <p>The reduction potential applied when a meal is switched to fully plant-based &mdash; a 52% cut in CO2e, 45% cut in land use, and 27% cut in water use &mdash; is drawn from <a href="https://www.nature.com/articles/s41467-024-45328-6" target="_blank" rel="noopener">Nature Communications (2024)</a>, which found plant-rich diets reduce greenhouse gas emissions by 30&ndash;52%, land use by 20&ndash;45%, and freshwater use by 14&ndash;27% versus a standard diet, with a fully vegan diet at the top of every range.</p>
+      <p>The 100% / 60% / 30% tabs represent the share of an event's meals switched to fully plant-based options &mdash; only that share receives the reduction, the rest is assumed to remain at the standard baseline.</p>
+      <p>This is necessarily a simplified, rough estimate. For the full workings and additional sources, see the <a href="https://docs.google.com/document/d/1_nvQh2YkRH3un1Mit0m_vrKi2dTvr0QJQBUoPT6KLQk/edit?usp=sharing" target="_blank" rel="noopener">calculation and sources document</a>, or visit <a href="further-reading.html">Further Reading</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/logo-text-light.png" alt="Plant-Based Prides" />
+        <p>Reducing our environmental impact to protect the LGBTQ+ community from the effects of climate change.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="why.html">Why?</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="further-reading.html">Further Reading</a></li>
+          <li><a href="impact-calculator.html">Impact Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Take Action</h4>
+        <ul>
+          <li><a href="https://act.plantbasedbritain.org/plant_based_prides_petition" target="_blank" rel="noopener">Sign The Petition</a></li>
+          <li><a href="email-your-local-pride.html">Email Your Local Pride</a></li>
+          <li><a href="https://act.plantbasedbritain.org/plant_based_pride_sign_up" target="_blank" rel="noopener">Campaign With Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Plant-Based Prides</span>
+      <span>Hackney Downs Studios, London</span>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="assets/js/calculator.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.getElementById("mealPercent");
+    const sliderValue = document.getElementById("mealPercentValue");
+    const form = document.getElementById("fullCalcForm");
+    const results = document.getElementById("results");
+    const tabBtns = document.querySelectorAll("#planetTabs .tab-btn");
+    let selectedPercent = 100;
+    let hasCalculated = false;
+
+    slider.addEventListener("input", () => {
+      sliderValue.textContent = slider.value;
+      if (hasCalculated) runCalc();
+    });
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        tabBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedPercent = Number(btn.dataset.percent);
+        if (hasCalculated) runCalc();
+      });
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      hasCalculated = true;
+      runCalc();
+    });
+
+    function runCalc() {
+      const attendees = document.getElementById("attendees").value;
+      if (!attendees || Number(attendees) <= 0) {
+        results.classList.add("empty");
+        results.innerHTML = "Please enter a valid number of attendees.";
+        return;
+      }
+
+      const r = PBP_CALC.compute(attendees, slider.value, selectedPercent);
+
+      results.classList.remove("empty");
+      results.innerHTML = `
+        <h3>Current estimated impact</h3>
+        <div class="stat-grid">
+          <div class="stat"><span class="stat-value">${PBP_CALC.fmt(r.currentCo2, 0)} kg</span><span class="stat-label">CO&#8322;e</span></div>
+          <div class="stat"><span class="stat-value">${PBP_CALC.fmt(r.currentLand, 0)} ft&sup2;</span><span class="stat-label">Land use</span></div>
+          <div class="stat"><span class="stat-value">${PBP_CALC.fmt(r.currentWater, 0)} L</span><span class="stat-label">Water use</span></div>
+        </div>
+
+        <h3>Possible reduction at ${selectedPercent}% plant-based</h3>
+        <div class="stat-grid">
+          <div class="stat"><span class="stat-value">${PBP_CALC.fmt(r.co2Saved, 0)} kg</span><span class="stat-label">CO&#8322;e saved</span></div>
+          <div class="stat"><span class="stat-value">${PBP_CALC.fmt(r.landSaved, 0)} ft&sup2;</span><span class="stat-label">Land saved</span></div>
+          <div class="stat"><span class="stat-value">${PBP_CALC.fmt(r.waterSaved, 0)} L</span><span class="stat-label">Water saved</span></div>
+        </div>
+
+        <p class="equivalents">That reduction is roughly equivalent to the CO&#8322; absorbed by ${PBP_CALC.fmt(r.equivalents.treesSaved,0)} trees in a year, ${PBP_CALC.fmt(r.equivalents.poolsSaved,2)} Olympic swimming pools of water, and ${PBP_CALC.fmt(r.equivalents.pitchesSaved,2)} football pitches of land.</p>
+
+        <p style="margin-top:16px; font-size:0.85rem; color:#6b7361;">Meals estimated: ${PBP_CALC.fmt(r.mealCount,1)} total, ${PBP_CALC.fmt(r.convertedMeals,1)} plant-based at this level.</p>
+      `;
+    }
+  });
+</script>
+
+</body>
+</html>
