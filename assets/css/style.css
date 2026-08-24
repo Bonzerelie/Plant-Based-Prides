@@ -803,3 +803,153 @@ section { padding: 30px 0; }
 }
 .site-header.force-mobile-nav .has-dropdown.open .dropdown-menu { display: block; }
 .site-header.force-mobile-nav .dropdown-toggle { width: 100%; justify-content: space-between; }
+
+/* ---------- Newsletter signup (Brevo embed) ----------
+   Brevo's own embed code ships with a lot of inline styles for its default
+   look (white box, Helvetica, blue-grey button). Rather than hand-edit that
+   markup — which would need redoing every time the form is regenerated in
+   Brevo — these rules override it to match the site instead. They use
+   !important because they're fighting inline styles on purpose; if you ever
+   paste in a fresh embed snippet from Brevo, wrap it in a
+   <div class="newsletter-embed"> as usual and this file doesn't need to
+   change. Selectors are written against Brevo's class names/structure as of
+   when this was added — if a future embed's structure differs, some of
+   these may need re-checking. */
+.newsletter-embed .sib-form {
+  background-image: none !important;
+  text-align: left !important;
+  padding: 0 !important;
+}
+.newsletter-embed #sib-form-container {
+  padding: 0 !important;
+}
+.newsletter-embed #sib-container {
+  /* Brevo's own stylesheet sets this element to display:inline-block with
+     width:100%, and margin:auto has no centering effect on inline-block
+     boxes (that trick only works on block-level ones) — which is why this
+     wasn't centering. Forcing it back to a block fixes that. */
+  display: block !important;
+  width: 100% !important;
+  max-width: 560px !important;
+  margin: 0 auto !important;
+  background: var(--pbp-white) !important;
+  border: 1px solid var(--pbp-border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-soft);
+  padding: 28px !important;
+  text-align: left !important;
+  box-sizing: border-box;
+}
+.newsletter-embed #sib-form > div:nth-of-type(1) .sib-form-block p {
+  font-family: var(--font-heading) !important;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: var(--pbp-dark-green) !important;
+  margin: 0 !important;
+}
+.newsletter-embed #sib-form > div:nth-of-type(2) .sib-form-block p {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  font-weight: 400 !important;
+  color: var(--pbp-charcoal) !important;
+  margin: 0 !important;
+}
+.newsletter-embed .entry__label {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  color: var(--pbp-dark-green) !important;
+  font-size: 0.95rem !important;
+}
+.newsletter-embed input.input {
+  width: 100%;
+  padding: 11px 13px !important;
+  border: 1.5px solid var(--pbp-border) !important;
+  border-radius: 9px !important;
+  font-size: 1rem !important;
+  font-family: var(--font-body) !important;
+  background: var(--pbp-bg) !important;
+  color: var(--pbp-ink) !important;
+  box-sizing: border-box;
+}
+.newsletter-embed input.input:focus {
+  outline: none;
+  border-color: var(--pbp-green) !important;
+}
+.newsletter-embed .entry__specification {
+  font-family: var(--font-body) !important;
+  color: #6b7361 !important;
+  font-size: 0.85rem !important;
+}
+.newsletter-embed .entry_mcq p {
+  font-family: var(--font-body) !important;
+  color: var(--pbp-charcoal) !important;
+  font-size: 0.95rem !important;
+  margin: 0 !important;
+}
+.newsletter-embed .sib-form-block__button {
+  font-family: var(--font-heading) !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  padding: 0.8em 1.6em !important;
+  border-radius: 999px !important;
+  border: 2px solid transparent !important;
+  background: var(--pbp-green) !important;
+  color: var(--pbp-white) !important;
+  width: 100%;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.newsletter-embed .sib-form-block__button:hover {
+  background: var(--pbp-dark-green) !important;
+  transform: translateY(-2px);
+}
+/* The submit button's loading-spinner SVG has no width/height of its own —
+   it's normally sized and hidden by Brevo's external sib-styles.css. That
+   stylesheet is served from sibforms.com, a domain ad-blockers (uBlock
+   Origin, Brave, Firefox strict mode, etc.) commonly block, which would
+   otherwise leave the icon rendering at its raw ~500px viewBox size and
+   blowing the button up into a huge circle. Hiding it outright here means
+   the button looks right regardless of whether that stylesheet loads. */
+.newsletter-embed .sib-form-block__button svg {
+  display: none !important;
+}
+/* Likewise, the checkbox's visual "tick" styling comes from sib-styles.css.
+   If that fails to load, fall back to a plain native checkbox rather than
+   an unstyled/invisible one. Harmless when the stylesheet does load, since
+   Brevo's CSS visually hides the native input in that case anyway. */
+.newsletter-embed input#OPT_IN {
+  width: 16px !important;
+  height: 16px !important;
+  accent-color: var(--pbp-green) !important;
+  vertical-align: middle;
+  margin-right: 6px !important;
+}
+/* Anti-spam honeypot field: meant to be invisible (bots fill it, real people
+   never see it), normally hidden via sib-styles.css's .input--hidden class.
+   Hiding it explicitly here too means a real visitor never sees a stray
+   empty box and risks accidentally filling it in, which would otherwise
+   cause Brevo to silently discard their genuine signup as spam. */
+.newsletter-embed input[name="email_address_check"] {
+  display: none !important;
+}
+.newsletter-embed .sib-form-message-panel {
+  font-family: var(--font-body) !important;
+  border-radius: var(--radius) !important;
+  max-width: 560px !important;
+  margin: 0 auto 12px !important;
+}
+.newsletter-embed .sib-form-message-panel__text {
+  text-align: left !important;
+}
+.newsletter-note {
+  max-width: 560px;
+  margin: 12px auto 0;
+  font-size: 0.85rem;
+  color: #6b7361;
+  text-align: center;
+}
+.newsletter-note a { color: var(--pbp-green-deep); }
