@@ -943,7 +943,11 @@ section { padding: 30px 0; }
   margin: 0 auto 12px !important;
 }
 .newsletter-embed .sib-form-message-panel__text {
-  text-align: left !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .newsletter-note {
   max-width: 560px;
@@ -953,3 +957,117 @@ section { padding: 30px 0; }
   text-align: center;
 }
 .newsletter-note a { color: var(--pbp-green-deep); }
+
+/* ---------- Latest News ---------- */
+.eyebrow-link {
+  color: inherit;
+  text-decoration: none;
+}
+.eyebrow-link:hover { text-decoration: underline; }
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.news-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--pbp-white);
+  border: 1px solid var(--pbp-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
+}
+.news-card-image {
+  aspect-ratio: 16 / 10;
+  background: var(--pbp-bg-alt);
+  overflow: hidden;
+}
+.news-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.news-card-image--placeholder {
+  background: linear-gradient(135deg, var(--pbp-bg-alt), var(--pbp-border));
+}
+.news-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.news-card-date {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--pbp-green-deep);
+  margin-bottom: 0.5em;
+}
+.news-card-body h3 { margin: 0 0 0.4em; color: var(--pbp-dark-green); }
+.news-card-body p { color: var(--pbp-charcoal); margin: 0; flex: 1; }
+.news-card-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--pbp-green-deep);
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  margin: 8px 0 28px;
+}
+.article-body p { margin: 0 0 1.1em; color: var(--pbp-ink); }
+.article-body p:last-child { margin-bottom: 0; }
+#articleDate {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6b7361;
+  margin: 0 auto;
+}
+
+/* ---------- Article inline images (dispersed through the body) ----------
+   Shown on their own horizontal band, full-width, with text above and
+   below rather than wrapped alongside — same treatment on desktop and
+   mobile, so there's no separate mobile override needed here. */
+.article-inline-image {
+  margin: 24px 0;
+  max-width: 100%;
+}
+.article-inline-image img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+.article-inline-image figcaption {
+  margin-top: 8px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-style: italic;
+  color: #6b7361;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .news-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .news-grid { grid-template-columns: 1fr; }
+}
