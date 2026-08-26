@@ -41,7 +41,7 @@
    their date has passed — you don't need to move them yourself.
    ========================================================================== */
 
-const PBP_EVENTS = [
+var PBP_EVENTS = [
   {
     title: "Example: London Pride 2026",
     date: "2026-06-27",
