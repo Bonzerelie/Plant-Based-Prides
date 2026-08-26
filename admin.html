@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>News Admin | Plant-Based Prides</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="assets/images/favicon-32.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --pbp-dark-green: #214001;
+    --pbp-green: #4bab13;
+    --pbp-green-deep: #029246;
+    --pbp-charcoal: #3d3d3d;
+    --pbp-ink: #202b18;
+    --pbp-bg: #fbfaf6;
+    --pbp-bg-alt: #f0f4e9;
+    --pbp-white: #ffffff;
+    --pbp-border: #e1e5d8;
+    --font-heading: "Poppins", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --radius: 14px;
+    --shadow-soft: 0 6px 24px rgba(33, 64, 1, 0.08);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--pbp-bg);
+    color: var(--pbp-ink);
+    font-family: var(--font-body);
+    line-height: 1.55;
+  }
+  .admin-shell {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 20px 64px;
+  }
+  .admin-header {
+    margin-bottom: 24px;
+  }
+  .admin-header .tag {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--pbp-green-deep);
+    background: var(--pbp-bg-alt);
+    border-radius: 999px;
+    padding: 4px 12px;
+    margin-bottom: 10px;
+  }
+  .admin-header h1 {
+    font-family: var(--font-heading);
+    color: var(--pbp-dark-green);
+    margin: 0 0 8px;
+    font-size: 1.8rem;
+  }
+  .admin-header p {
+    margin: 0;
+    color: var(--pbp-charcoal);
+    max-width: 640px;
+  }
+  .admin-notice {
+    background: #fff8e6;
+    border: 1px solid #f0dca0;
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    font-size: 0.9rem;
+    color: #5a4a12;
+    margin: 20px 0 28px;
+  }
+  .admin-notice strong { color: #3f3308; }
+  .admin-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 900px) {
+    .admin-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+  .admin-card {
+    background: var(--pbp-white);
+    border: 1px solid var(--pbp-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    padding: 24px;
+  }
+  .admin-card h2 {
+    font-family: var(--font-heading);
+    color: var(--pbp-dark-green);
+    font-size: 1.15rem;
+    margin: 0 0 16px;
+  }
+  .field { margin-bottom: 16px; }
+  .field label {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--pbp-dark-green);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+  }
+  .field .hint {
+    display: block;
+    font-weight: 400;
+    color: #6b7361;
+    font-size: 0.78rem;
+    margin-top: 4px;
+  }
+  .field input[type="text"],
+  .field input[type="date"],
+  .field textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--pbp-border);
+    border-radius: 9px;
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    background: var(--pbp-bg);
+    color: var(--pbp-ink);
+  }
+  .field input:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--pbp-green);
+  }
+  .field textarea { resize: vertical; }
+  #excerpt { min-height: 70px; }
+  #body { min-height: 160px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.7em 1.5em;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background: var(--pbp-green);
+    color: var(--pbp-white);
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .btn:hover { background: var(--pbp-dark-green); transform: translateY(-1px); }
+  .btn-secondary {
+    background: var(--pbp-white);
+    color: var(--pbp-green-deep);
+    border-color: var(--pbp-green);
+  }
+  .btn-secondary:hover { background: var(--pbp-bg-alt); }
+  .output-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  #output {
+    width: 100%;
+    min-height: 320px;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    background: var(--pbp-ink);
+    color: #eaf5df;
+    border: none;
+    border-radius: 10px;
+    padding: 16px;
+    white-space: pre;
+    overflow: auto;
+  }
+  .copy-status {
+    font-size: 0.85rem;
+    color: var(--pbp-green-deep);
+    margin-left: 4px;
+    min-height: 1.2em;
+    display: inline-block;
+  }
+  .steps {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.9rem;
+    color: var(--pbp-charcoal);
+  }
+  .steps li { margin-bottom: 6px; }
+  .back-link {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: var(--pbp-green-deep);
+  }
+  .field-section-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--pbp-dark-green);
+    font-size: 1rem;
+    margin: 22px 0 4px;
+    padding-top: 18px;
+    border-top: 1px solid var(--pbp-border);
+  }
+  .field-section-hint {
+    font-size: 0.82rem;
+    color: #6b7361;
+    margin: 0 0 14px;
+  }
+  .extra-image-row {
+    background: var(--pbp-bg);
+    border: 1.5px solid var(--pbp-border);
+    border-radius: 10px;
+    padding: 14px 14px 4px;
+    margin-bottom: 14px;
+  }
+  .extra-image-row-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .extra-image-row-header span {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--pbp-dark-green);
+  }
+  .remove-image-btn {
+    background: none;
+    border: none;
+    color: #a33;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 2px 4px;
+    text-decoration: underline;
+  }
+  .field-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 140px;
+    gap: 12px;
+  }
+  .add-image-btn { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="admin-shell">
+
+  <div class="admin-header">
+    <span class="tag">Internal tool</span>
+    <h1>Add a Latest News article</h1>
+    <p>Fill in the form, click "Generate code", then copy the result into <code>assets/js/news-data.js</code> and upload it to GitHub. This page doesn't save or publish anything by itself &mdash; it just formats your article correctly.</p>
+  </div>
+
+  <div class="admin-notice">
+    <strong>Got images for this article?</strong> Upload each image file itself to the <code>assets/images/news/</code> folder in your GitHub repository first (drag it in via the GitHub website works fine), then type its filename into the relevant field below &mdash; e.g. <code>assets/images/news/my-photo.jpg</code>. You can have one main image (shown at the top of the article and on the listing page) plus as many additional images as you like, dispersed through the article text.
+  </div>
+
+  <div class="admin-grid">
+
+    <div class="admin-card">
+      <h2>Article details</h2>
+
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="e.g. We marched at Brighton Pride!" />
+      </div>
+
+      <div class="field">
+        <label for="id">Article ID (web address)
+          <span class="hint">Auto-filled from the title. Must be unique &mdash; check it doesn't already exist in news-data.js. Lowercase letters, numbers and hyphens only.</span>
+        </label>
+        <input type="text" id="id" placeholder="e.g. brighton-pride-2026" />
+      </div>
+
+      <div class="field">
+        <label for="date">Date</label>
+        <input type="date" id="date" />
+      </div>
+
+      <div class="field">
+        <label for="author">Written by <span class="hint">(optional &mdash; shown next to the date on the article page only, not on the Latest News listing)</span></label>
+        <input type="text" id="author" placeholder="e.g. Henry Newbury" />
+      </div>
+
+      <div class="field">
+        <label for="image">Main image path <span class="hint">(optional &mdash; shown at the top of the article and as the listing thumbnail. Upload the file to GitHub first, see note above)</span></label>
+        <input type="text" id="image" placeholder="e.g. assets/images/news/brighton-pride-2026.jpg" />
+      </div>
+
+      <div class="field">
+        <label for="imageAlt">Main image description <span class="hint">(optional, for accessibility &mdash; only needed if you added a main image)</span></label>
+        <input type="text" id="imageAlt" placeholder="e.g. Plant-Based Prides volunteers at Brighton Pride march" />
+      </div>
+
+      <div class="field">
+        <label for="excerpt">Short excerpt <span class="hint">Shown on the Latest News listing page &mdash; a sentence or two.</span></label>
+        <textarea id="excerpt"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="body">Full article text <span class="hint">Leave a blank line between paragraphs. Basic HTML like &lt;strong&gt; or &lt;a href="..."&gt; can be used if needed.</span></label>
+        <textarea id="body"></textarea>
+      </div>
+
+      <div class="field-section-title">Additional images</div>
+      <p class="field-section-hint">Optional images dispersed through the article, separate from the main image above &mdash; each appears on its own full-width band with text above and below, on both desktop and mobile.</p>
+
+      <div id="extraImages"></div>
+      <button class="btn btn-secondary add-image-btn" type="button" id="addImageBtn">+ Add another image</button>
+
+      <div style="margin-top:20px;">
+        <button class="btn" type="button" id="generateBtn">Generate code</button>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Copy this into news-data.js</h2>
+      <ol class="steps">
+        <li>Open <code>assets/js/news-data.js</code>.</li>
+        <li>Paste the block below inside the square brackets <code>[ ... ]</code>, anywhere between the other articles (keep the commas).</li>
+        <li>Save the file and upload it to GitHub, replacing the old copy.</li>
+      </ol>
+      <br />
+      <div class="output-actions">
+        <button class="btn btn-secondary" type="button" id="copyBtn">Copy to clipboard</button>
+        <span class="copy-status" id="copyStatus"></span>
+      </div>
+      <textarea id="output" readonly placeholder="Fill in the form and click &quot;Generate code&quot; &mdash; your ready-to-paste article block will appear here."></textarea>
+    </div>
+
+  </div>
+
+  <a class="back-link" href="latest-news.html">&larr; View the Latest News page</a>
+
+</div>
+
+<script>
+  function slugify(str) {
+    return String(str || "")
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  const titleEl = document.getElementById("title");
+  const idEl = document.getElementById("id");
+  let idManuallyEdited = false;
+
+  idEl.addEventListener("input", () => { idManuallyEdited = true; });
+  titleEl.addEventListener("input", () => {
+    if (!idManuallyEdited) idEl.value = slugify(titleEl.value);
+  });
+
+  function todayISO() {
+    // Avoid `new Date()` timezone edge cases by reading the browser's local date parts.
+    const now = new Date();
+    const y = now.getFullYear();
+    const m = String(now.getMonth() + 1).padStart(2, "0");
+    const d = String(now.getDate()).padStart(2, "0");
+    return `${y}-${m}-${d}`;
+  }
+  document.getElementById("date").value = todayISO();
+
+  // ---- Additional images (repeatable rows) ----
+  const extraImagesWrap = document.getElementById("extraImages");
+  let extraImageCount = 0;
+
+  function addExtraImageRow() {
+    extraImageCount += 1;
+    const n = extraImageCount;
+    const row = document.createElement("div");
+    row.className = "extra-image-row";
+    row.dataset.rowId = n;
+    row.innerHTML = `
+      <div class="extra-image-row-header">
+        <span>Image ${n}</span>
+        <button type="button" class="remove-image-btn">Remove</button>
+      </div>
+      <div class="field">
+        <label>Image path <span class="hint">Upload to GitHub first, then reference it here.</span></label>
+        <input type="text" class="extra-src" placeholder="e.g. assets/images/news/brighton-pride-2026-2.jpg" />
+      </div>
+      <div class="field">
+        <label>Image description <span class="hint">For accessibility.</span></label>
+        <input type="text" class="extra-alt" placeholder="e.g. Volunteers handing out leaflets" />
+      </div>
+      <div class="field field-row-2">
+        <div>
+          <label>Caption <span class="hint">Optional, shown under the image.</span></label>
+          <input type="text" class="extra-caption" placeholder="Optional caption" />
+        </div>
+        <div>
+          <label>After paragraph # <span class="hint">Optional.</span></label>
+          <input type="text" class="extra-after" inputmode="numeric" placeholder="Auto" />
+        </div>
+      </div>
+    `;
+    row.querySelector(".remove-image-btn").addEventListener("click", () => row.remove());
+    extraImagesWrap.appendChild(row);
+  }
+  document.getElementById("addImageBtn").addEventListener("click", addExtraImageRow);
+
+  document.getElementById("generateBtn").addEventListener("click", () => {
+    const id = idEl.value.trim() || slugify(titleEl.value);
+    const title = titleEl.value.trim();
+    const date = document.getElementById("date").value.trim();
+    const author = document.getElementById("author").value.trim();
+    const image = document.getElementById("image").value.trim();
+    const imageAlt = document.getElementById("imageAlt").value.trim();
+    const excerpt = document.getElementById("excerpt").value.trim();
+    const body = document.getElementById("body").value.trim();
+
+    const output = document.getElementById("output");
+    const status = document.getElementById("copyStatus");
+    status.textContent = "";
+
+    if (!title) {
+      output.value = "Please enter at least a title before generating code.";
+      return;
+    }
+    if (!id) {
+      output.value = "Please enter an article ID (or a title to auto-fill one).";
+      return;
+    }
+    if (!date) {
+      output.value = "Please choose a date.";
+      return;
+    }
+
+    const extraImages = Array.from(extraImagesWrap.querySelectorAll(".extra-image-row"))
+      .map((row) => ({
+        src: row.querySelector(".extra-src").value.trim(),
+        alt: row.querySelector(".extra-alt").value.trim(),
+        caption: row.querySelector(".extra-caption").value.trim(),
+        after: row.querySelector(".extra-after").value.trim(),
+      }))
+      .filter((img) => img.src);
+
+    let imagesBlock = "";
+    if (extraImages.length) {
+      const entries = extraImages
+        .map((img) => {
+          const afterLine = img.after && /^\d+$/.test(img.after)
+            ? `\n        afterParagraph: ${parseInt(img.after, 10)},`
+            : "";
+          return `      {
+        src: ${JSON.stringify(img.src)},
+        alt: ${JSON.stringify(img.alt)},
+        caption: ${JSON.stringify(img.caption)},${afterLine}
+      },`;
+        })
+        .join("\n");
+      imagesBlock = `\n    images: [\n${entries}\n    ],`;
+    }
+
+    const authorLine = author ? `\n    author: ${JSON.stringify(author)},` : "";
+
+    const block =
+`  {
+    id: ${JSON.stringify(slugify(id))},
+    title: ${JSON.stringify(title)},
+    date: ${JSON.stringify(date)},${authorLine}
+    image: ${JSON.stringify(image)},
+    imageAlt: ${JSON.stringify(imageAlt)},
+    excerpt: ${JSON.stringify(excerpt)},
+    body: ${JSON.stringify(body)},${imagesBlock}
+  },`;
+
+    output.value = block;
+  });
+
+  document.getElementById("copyBtn").addEventListener("click", async () => {
+    const output = document.getElementById("output");
+    const status = document.getElementById("copyStatus");
+    if (!output.value.trim()) {
+      status.textContent = "Nothing to copy yet.";
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(output.value);
+      status.textContent = "Copied!";
+    } catch (err) {
+      output.select();
+      status.textContent = "Couldn't auto-copy — text is selected, press Ctrl/Cmd+C.";
+    }
+  });
+</script>
+
+</body>
+</html>

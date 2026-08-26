@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="pageTitle">Latest News | Plant-Based Prides</title>
+<meta name="description" content="News, updates and campaign stories from Plant-Based Prides." />
+<link rel="icon" type="image/png" href="assets/images/favicon-32.png" />
+<link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+<div class="page-shell">
+<header class="site-header">
+  <div class="pride-stripe"></div>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand">
+      <img src="assets/images/logo-text.png" alt="Plant-Based Prides" />
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="why.html">Why?</a></li>
+        <li class="has-dropdown">
+          <a class="dropdown-toggle" href="take-action.html" aria-expanded="false">Take Action <span class="chev">&#9662;</span></a>
+          <ul class="dropdown-menu">
+            <li><a href="https://act.plantbasedbritain.org/plant_based_prides_petition" target="_blank" rel="noopener">Sign The Petition<span class="dd-desc">Add your name to the campaign petition</span></a></li>
+            <li><a href="email-your-local-pride.html">Email Your Local Pride<span class="dd-desc">Template emails, three ways to make the case</span></a></li>
+            <li><a href="events.html">Events<span class="dd-desc">Pride marches, workshops and talks we're attending</span></a></li>
+            <li><a href="keep-up-to-date.html">Keep Up To Date<span class="dd-desc">Join our mailing list for news and updates</span></a></li>
+            <li><a href="https://act.plantbasedbritain.org/plant_based_pride_sign_up" target="_blank" rel="noopener">Campaign With Us<span class="dd-desc">Join the wider Plant-Based Prides campaign</span></a></li>
+          </ul>
+        </li>
+        <li><a href="latest-news.html">Latest News</a></li>
+        <li><a href="further-reading.html">Further Reading</a></li>
+        <li><a href="impact-calculator.html">Impact Calculator</a></li>
+        <li><a class="btn btn-primary btn-sm" href="https://act.plantbasedbritain.org/plant_based_prides_petition" target="_blank" rel="noopener">Sign the Petition</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="pride-stripe"></div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container container-narrow">
+      <span class="eyebrow"><a href="latest-news.html" class="eyebrow-link">&larr; Latest News</a></span>
+      <h1 id="articleTitle">Article not found</h1>
+      <p id="articleDate"></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container container-narrow">
+      <div id="articleImageWrap"></div>
+      <div id="articleBody" class="article-body">
+        <p>Sorry, we couldn't find that article &mdash; it may have been removed, or the link might be incorrect.</p>
+        <p><a href="latest-news.html">Back to Latest News &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Don't miss an update</h2>
+        <p>Join our mailing list to hear about new articles, events and ways to take action.</p>
+        <div class="btn-group" style="justify-content:center;">
+          <a href="keep-up-to-date.html" class="btn btn-white">Keep Up To Date</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/images/logo-text-light.png" alt="Plant-Based Prides" />
+        <p>Reducing our environmental impact to protect the LGBTQ+ community from the effects of climate change.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="why.html">Why?</a></li>
+          <li><a href="latest-news.html">Latest News</a></li>
+          <li><a href="further-reading.html">Further Reading</a></li>
+          <li><a href="impact-calculator.html">Impact Calculator</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Take Action</h4>
+        <ul>
+          <li><a href="https://act.plantbasedbritain.org/plant_based_prides_petition" target="_blank" rel="noopener">Sign The Petition</a></li>
+          <li><a href="email-your-local-pride.html">Email Your Local Pride</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="keep-up-to-date.html">Keep Up To Date</a></li>
+          <li><a href="https://act.plantbasedbritain.org/plant_based_pride_sign_up" target="_blank" rel="noopener">Campaign With Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Plant-Based Prides</span>
+      <span>Hackney Downs Studios, London</span>
+      <a href="privacy-policy.html">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="assets/js/news-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const articles = window.PBP_NEWS || [];
+    const article = articles.find((a) => a.id === id);
+
+    if (!article) return; // fallback "not found" markup already in the page
+
+    function escapeHtml(str) {
+      return String(str || "").replace(/[&<>"']/g, (c) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+      }[c]));
+    }
+
+    document.getElementById("pageTitle").textContent = `${article.title} | Plant-Based Prides`;
+    document.getElementById("articleTitle").textContent = article.title;
+
+    const d = new Date(article.date + "T00:00:00");
+    const dateLabel = `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+    document.getElementById("articleDate").textContent = article.author
+      ? `${dateLabel} - ${article.author}`
+      : dateLabel;
+
+    if (article.image) {
+      document.getElementById("articleImageWrap").innerHTML =
+        `<img class="article-image" src="${article.image}" alt="${escapeHtml(article.imageAlt || "")}" />`;
+    }
+
+    // Body text: blank-line-separated paragraphs. Basic HTML (e.g. <strong>,
+    // <a href="...">) written into news-data.js is trusted content authored
+    // via admin.html, so it's inserted as-is rather than escaped.
+    const paragraphs = String(article.body || "")
+      .split(/\n\s*\n/)
+      .map((p) => p.trim())
+      .filter(Boolean);
+
+    // Extra images dispersed through the article. Images with a specific
+    // afterParagraph go exactly where asked; images that don't specify one
+    // are spread out evenly among the gaps so you can just drop them in
+    // without doing the maths yourself. Each sits on its own full-width
+    // band, with text above and below rather than wrapped alongside it.
+    const extraImages = (article.images || []).filter((img) => img && img.src);
+    const unassigned = extraImages.filter((img) => !img.afterParagraph);
+    const assigned = extraImages.filter((img) => img.afterParagraph);
+
+    const autoPositions = unassigned.map((img, i) => ({
+      img,
+      afterParagraph: Math.min(
+        paragraphs.length,
+        Math.max(1, Math.round(((i + 1) * paragraphs.length) / (unassigned.length + 1)))
+      ),
+    }));
+    const fixedPositions = assigned.map((img) => ({
+      img,
+      afterParagraph: Math.min(Math.max(1, Math.round(img.afterParagraph)), paragraphs.length),
+    }));
+
+    const byParagraph = {};
+    [...fixedPositions, ...autoPositions].forEach(({ img, afterParagraph }) => {
+      if (!byParagraph[afterParagraph]) byParagraph[afterParagraph] = [];
+      byParagraph[afterParagraph].push(img);
+    });
+
+    function renderImage(img) {
+      const captionHtml = img.caption
+        ? `<figcaption>${escapeHtml(img.caption)}</figcaption>`
+        : "";
+      return `
+        <figure class="article-inline-image">
+          <img src="${img.src}" alt="${escapeHtml(img.alt || "")}" loading="lazy" />
+          ${captionHtml}
+        </figure>
+      `;
+    }
+
+    const bodyHtml = paragraphs
+      .map((p, i) => {
+        const paragraphNumber = i + 1;
+        const images = (byParagraph[paragraphNumber] || []).map(renderImage).join("");
+        return `<p>${p}</p>${images}`;
+      })
+      .join("");
+
+    document.getElementById("articleBody").innerHTML =
+      bodyHtml || "<p>This article doesn't have any body text yet.</p>";
+  });
+</script>
+
+</body>
+</html>
